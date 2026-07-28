@@ -1,0 +1,317 @@
+/* Zero-G Tech Custom Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+
+:root {
+  --color-bg: #050508;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0aec0;
+  --color-cyan: #00f2fe;
+  --color-purple: #8a2be2;
+  --color-silver: #e2e8f0;
+  
+  --font-hero: 'Outfit', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(5, 5, 8, 0.95);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.4);
+}
+
+/* Background Grid Overlay */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.radial-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.12) 0%, rgba(0, 242, 254, 0.06) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+/* Scanning Telemetry Line */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.3), rgba(138, 43, 226, 0.3), transparent);
+  animation: scan 8s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    top: -5%;
+  }
+  100% {
+    top: 105%;
+  }
+}
+
+/* Glassmorphism Base */
+.glass-panel {
+  background: rgba(10, 10, 15, 0.45);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 242, 254, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 242, 254, 0.1);
+}
+
+.glass-panel-biz:hover {
+  border-color: rgba(138, 43, 226, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(138, 43, 226, 0.1);
+}
+
+/* Zero-G Floating Drift Animation */
+@keyframes float-y-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+}
+
+@keyframes float-y-fast {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-slow {
+  animation: float-y-slow 6s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: float-y-fast 4s ease-in-out infinite;
+}
+
+/* Custom 3D perspective wrapper */
+.perspective-container {
+  perspective: 1000px;
+}
+
+.glow-cyan {
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.7), 0 0 30px rgba(0, 242, 254, 0.3), 0 0 60px rgba(0, 242, 254, 0.1);
+}
+
+.glow-purple {
+  text-shadow: 0 0 15px rgba(138, 43, 226, 0.7), 0 0 30px rgba(138, 43, 226, 0.3), 0 0 60px rgba(138, 43, 226, 0.1);
+}
+
+/* Animated gradient shimmer for hero text */
+@keyframes gradient-shift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+.hero-name-gradient {
+  background: linear-gradient(90deg, #00f2fe, #ffffff, #b44fff, #00f2fe);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 5s ease infinite;
+  filter: drop-shadow(0 0 18px rgba(0, 242, 254, 0.35));
+}
+
+.tagline-gradient {
+  background: linear-gradient(90deg, #00f2fe, #e0e0ff, #b44fff, #00f2fe);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+  filter: drop-shadow(0 0 12px rgba(138, 43, 226, 0.3));
+}
+
+/* Timeline Custom styles */
+.timeline-line {
+  background: linear-gradient(180deg, 
+    rgba(0, 242, 254, 0.8) 0%, 
+    rgba(138, 43, 226, 0.8) 50%, 
+    rgba(0, 242, 254, 0.8) 100%
+  );
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+/* Custom fonts styling classes */
+.font-hero {
+  font-family: var(--font-hero);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+/* Telemetry display panels */
+.telemetry-tag {
+  background: rgba(0, 242, 254, 0.05);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  color: var(--color-cyan);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.telemetry-tag-biz {
+  background: rgba(138, 43, 226, 0.05);
+  border: 1px solid rgba(138, 43, 226, 0.2);
+  color: var(--color-purple);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Magnetic CTA launcher button effects */
+.rocket-btn {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, color 0.4s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rocket-btn::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 242, 254, 0.2) 0%, transparent 100%);
+  transition: top 0.4s ease;
+  z-index: -1;
+}
+
+.rocket-btn:hover::before {
+  top: 0;
+}
+
+.rocket-btn:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+}
+
+/* Launching animation frames */
+@keyframes launch-particle {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) scale(0);
+    opacity: 0;
+  }
+}
+
+.plume-particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--color-cyan) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: launch-particle 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* Core matrix split-hover styles */
+.matrix-active-cyan {
+  border-color: rgba(0, 242, 254, 0.6) !important;
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.25) !important;
+}
+
+.matrix-active-purple {
+  border-color: rgba(138, 43, 226, 0.6) !important;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.25) !important;
+}
+
+/* Floating label physics */
+.floating-label-wrap {
+  position: relative;
+}
+
+.floating-label-wrap label {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-size: 0.875rem; /* text-sm */
+  font-family: var(--font-body);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
+}
+
+/* Float Up States: focused or not empty (placeholder not shown) */
+.floating-label-wrap input:focus ~ label,
+.floating-label-wrap textarea:focus ~ label,
+.floating-label-wrap input:not(:placeholder-shown) ~ label,
+.floating-label-wrap textarea:not(:placeholder-shown) ~ label {
+  top: -16px;
+  font-size: 0.75rem; /* text-xs */
+  font-family: var(--font-mono);
+}
+
+/* Color glowing outputs on focus */
+.floating-label-wrap input:focus ~ label,
+.floating-label-wrap textarea:focus ~ label {
+  color: var(--color-cyan);
+}
+
+/* Make purple glow for inputs utilizing email / message classes */
+.floating-label-wrap input[id*="email"]:focus ~ label,
+.floating-label-wrap textarea[id*="message"]:focus ~ label {
+  color: var(--color-purple);
+}
